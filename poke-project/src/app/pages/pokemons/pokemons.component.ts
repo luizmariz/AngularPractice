@@ -10,14 +10,18 @@ import { PokemonService } from '../../services/pokemon.service';
 
 export class PokemonsComponent implements OnInit {
 
-  constructor(public pkmnService: PokemonService) { }
+  pokemons = [];
+  id: number;
+  constructor(public pkmnService: PokemonService) {
+      this.id = 0;
+   }
 
   ngOnInit() {
   }
 
   getPokemon(){
     console.log("Entrei na função")
-    this.id = 1;
+    this.id++;
     this.pkmnService.getPokemon(this.id)
     .subscribe(
         (res)=>{
