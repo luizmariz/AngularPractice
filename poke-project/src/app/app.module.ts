@@ -10,6 +10,9 @@ import { PokemonsComponent } from './pages/pokemons/pokemons.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BerriesComponent } from './pages/berries/berries.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { PokemonService } from './services/pokemon.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +24,10 @@ import { BerriesComponent } from './pages/berries/berries.component';
   imports: [
     BrowserModule,
     MaterializeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
