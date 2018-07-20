@@ -1,1 +1,18 @@
 <a class="waves-effect was-light btn" (click)="getPokemon()">Quem é esse pokemon?</a>
+
+<div class="row center container">
+  <div class="col s12 m6 l2" *ngFor="let pokemon of pokemons">
+  <div class="card">
+    <div class="waves-effect waves-block waves-light">
+      <img class="activator" src="{{pokemon.sprites.front_default}}">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4 center">{{pokemon.name}}</span>
+      <p><a>Info: clique no card</a></p>
+    </div>
+    <div class="info card-reveal">
+      <span class="card-title grey-text text-darken-4">#{{pokemon.id}}<i class="material-icons right">Fechar</i></span>
+      <p class="rigth">Peso: {{pokemon.weight}}<br>Tamanho: {{pokemon.height}}<br>XP base: {{pokemon.base_experience}}</p>
+    </div>
+  </div>
+</div>
