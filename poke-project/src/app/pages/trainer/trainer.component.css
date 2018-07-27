@@ -1,0 +1,13 @@
+p {
+	text-align: justify;;
+}
+
+.citacao {
+	text-align: center;
+	font-weight: bold;
+}
+
+.config {
+	max-width: 500px;
+	margin-top: 5%;
+}
