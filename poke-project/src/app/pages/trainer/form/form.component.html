@@ -1,0 +1,75 @@
+<a class="waves-effect waves-light btn modal-trigger" (click)="abreModal()">Comece sua jornada Pokemon!</a>
+
+<div id="modal1" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions" class="modal modal-fixed-footer">
+	<div class="modal-content">
+		<img src="/assets/Jacob.gif_c200">
+		<h5> Bem vindo, ao mundo pokemom!</h5>
+		<div class="container">
+			<form>
+				<div class=" input-field col l12">
+					<input id="nome" type="text" name="nome">
+					<label for="nome">Nome</label>
+				</div>
+				<div class=" input-field col l12">
+					<input id="idade" type="text" name="idade">
+					<label for="idade">Idade</label>
+				</div>
+				<div class=" input-field col l12">
+					<input id="num_ident" type="text" name="num_ident">
+					<label for="num_ident">Nº de indetificação</label>
+				</div>
+				<div class=" col l12">
+					<p>Região de Início da Jornada</p>
+					<p>
+      					<label for="kanto">
+        				<input type="checkbox"id="kanto"/>
+        				<span>Kanto</span>
+     					 </label>
+    				</p>
+				</div>
+				<div class=" input-field col l12">
+					<input id="regiao_outra" type="text" name="regiao_outra">
+					<label for="regiao_outra">Outras regiões que planeja se aventurar</label>
+				</div>
+				<div class=" input-field col l12">
+					<input id="poke_inic" type="text" name="poke_inic">
+					<label for="poke_inic">Pokémon inicial</label>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="fechaModal()">Fechar</a>
+    </div>
+</div>
+
+
+<!-- 
+
+	<form #login="ngForm" (ngSubmit)="onSubmit(login)" class="col l12 card-panel">
+		<div>
+			<div class="input-field col l6">
+				<input id="usuario" type="text" name="usuario" ngModel required #usuario="ngModel">
+				<label for="usuario">Usuário</label>
+			</div>
+			<div class="input-field col l6">
+				<input id="senha" type="password" name="senha" ngModel required #senha="ngModel" (keyup)="checkPassword(senha)">
+				<label for="senha">Senha</label>
+			</div>
+		</div>
+
+		<div *ngIf="(usuario.invalid && usuario.touched)|| (senha.invalid && senha.touched) || (login.submitted && login.untouched && senha.untouched)">
+					<p>*Campo(s) obrigatórios.</p>
+		</div>
+
+		<div *ngIf="passwordError">
+			<p>*Senha inválida.</p>
+		</div>
+
+		<div class="row">
+			<button class="waves-effect waves-light btn" type="submit" [disabled]="login.invalid || passwordError">LOGIN</button>
+		</div>
+	</form>
+
+-->
