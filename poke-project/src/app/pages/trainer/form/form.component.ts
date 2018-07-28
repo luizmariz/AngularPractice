@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MaterializeAction } from "angular2-materialize";
+import { PokemonService } from '../../../services/pokemon.service';
 
 @Component({
   selector: 'app-form',
@@ -9,17 +10,15 @@ import { MaterializeAction } from "angular2-materialize";
 
 export class FormComponent implements OnInit {
 
-  constructor() { }
+  constructor(public pkmnService: PokemonService) { }
 
   ngOnInit() {
   }
 
   inputDisabled: boolean = true;
 
-  onSubmit(login) {
-  	console.log(login.value.usuario);
-  	console.log(login.value.senha);
-  	console.log(login);
+  onSubmit(jornada) {
+  	console.log(jornada.value.poke);
   }
 
   passwordError:boolean = false;
@@ -39,6 +38,22 @@ export class FormComponent implements OnInit {
 
   fechaModal() {
   	this.modalActions.emit({action:"modal",params:['close']});
+  }
+
+  /* Quem é esse pokemon! */
+
+  pokemon;
+  poke;
+  
+  getPokemon(poke){
+    console.log("Entrei na função")
+    this.pkmnService.getPokemon(poke.value)
+    .subscribe(
+      (res)=>{
+        this.pokemon = res;
+        console.log(res);
+      }
+    )
   }
 
 }
