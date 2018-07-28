@@ -1,39 +1,99 @@
-<a class="waves-effect waves-light btn modal-trigger" (click)="abreModal()">Comece sua jornada Pokemon!</a>
+<button class="waves-effect waves-light btn" (click)="abreModal()">Comece sua jornada Pokemon!</button>
 
-<div id="modal1" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions" class="modal modal-fixed-footer">
+<div materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions" class="modal modal-fixed-footer">
 	<div class="modal-content">
 		<img src="/assets/Jacob.gif_c200">
 		<h5> Bem vindo, ao mundo pokemom!</h5>
 		<div class="container">
-			<form action="#">
-				<div class=" input-field col l12">
+			<form #jornada="ngForm" (ngSubmit)="onSubmit(jornada)">
+				<div class=" input-field col s12">
 					<input id="nome" type="text" name="nome">
 					<label for="nome">Nome</label>
 				</div>
-				<div class=" input-field col l12">
+				<div class=" input-field col s12">
 					<input id="idade" type="text" name="idade">
 					<label for="idade">Idade</label>
 				</div>
-				<div class=" input-field col l12">
+				<div class=" input-field col s12">
 					<input id="num_ident" type="text" name="num_ident">
 					<label for="num_ident">Nº de indetificação</label>
 				</div>
-				<div class=" col l6">
-					<p>Região de Início da Jornada</p>
+				<div class=" col s12 l6">
+					<p>Região de Início da Jornada: </p>
 					<p>
-      					<input type="radio" id="kanto" name="kanto"/>
+      					<input type="radio" id="kanto" name="grupo1"/>
         				<label for="kanto">Kanto</label>	
-    				</p>
+					</p>
+					<p>
+						<input type="radio" id="johto" name="grupo1"/>
+					  	<label for="johto">Johto</label>	
+				  	</p>
+					<p>
+						<input type="radio" id="hoenn" name="grupo1"/>
+				  		<label for="hoenn">Hoenn</label>	
+					</p>
+					<p>
+						<input type="radio" id="sinnoh" name="grupo1"/>
+					  	<label for="sinnoh">Sinnoh</label>	
+				  	</p>
+				  	<p>
+						<input type="radio" id="unova" name="grupo1"/>
+				  		<label for="unova">Unova</label>	
+			  		</p>
+			  		<p>
+						<input type="radio" id="kalos" name="grupo1"/>
+			  			<label for="kalos">Kalos</label>	
+		  			</p>
 				</div>
-				<div class=" input-field col l6">
-					<input id="regiao_outra" type="text" name="regiao_outra">
-					<label for="regiao_outra">Outras regiões que planeja se aventurar</label>
+				<div class="col s12 l6">
+					<p>Outras regiões que planeja se aventurar:</p>
+					<p>
+      					<input type="checkbox" id="kanto_chec" name="kanto_chec"/>
+        				<label for="kanto_chec">Kanto</label>	
+					</p>
+					<p>
+						<input type="checkbox" id="johto_chec" name="johto_chec"/>
+					  	<label for="johto_chec">Johto</label>	
+				  	</p>
+				  	<p>
+						<input type="checkbox" id="hoenn_chec" name="hoenn_chec"/>
+				  		<label for="hoenn_chec">Hoenn</label>	
+			 		</p>
+			  		<p>
+						<input type="checkbox" id="sinnoh_chec" name="sinnoh_chec"/>
+			  			<label for="sinnoh_chec">Sinnoh</label>	
+		  			</p>
+		  			<p>
+						<input type="checkbox" id="unova_chec" name="unova_chec"/>
+		  				<label for="unova_chec">Unova</label>	
+	  				</p>
+	  				<p>
+						<input type="checkbox" id="kalos_chec" name="kalos_chec"/>
+	  					<label for="kalos_chec">Kalos</label>	
+  					</p>
+  					<p>
+						<input type="checkbox" id="sevii_chec" name="sevii_chec"/>
+  						<label for="sevii_chec">Sevii Islands</label>	
+					</p>
+					<p>
+						<input type="checkbox" id="laranjas_chec" name="laranjas_chec"/>
+  						<label for="laranjas_chec">Ilhas Laranja</label>	
+					</p>
 				</div>
-				<div class=" input-field col l12">
-					<input id="poke_inic" type="text" name="poke_inic">
-					<label for="poke_inic">Pokémon inicial</label>
+				<div class="input-field col s12">
+					<div *ngIf="pokemon" class="col s6">
+						<img class="activator" src="{{pokemon.sprites.front_default}}">
+					</div>
+					<div *ngIf="pokemon" class="col s6">
+						<p class="rigth">
+							#{{pokemon.id}}
+							<br>XP base: {{pokemon.base_experience}}
+						</p>
+					</div>		
+					<input id="poke" type="text" name="poke" ngModel required #poke="ngModel" (blur)="getPokemon(poke)">
+					<label for="poke">Pokémon inicial</label>
 				</div>
-
+				<button class="waves-effect waves-light btn" type="submit">COMEÇAR!</button>
 			</form>
 		</div>
 	</div>
