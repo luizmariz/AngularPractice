@@ -16,9 +16,26 @@ export class FormComponent implements OnInit {
   }
 
   inputDisabled: boolean = true;
+  arrayRegioes = [];
 
   onSubmit(jornada) {
-  	console.log(jornada.value.poke);
+    console.log(jornada.value.nome);
+    console.log(jornada.value.idade);
+    console.log(jornada.value.numIdent);
+    console.log(jornada.value.grupo1);
+    console.log(this.arrayRegioes);
+    console.log(jornada.value.poke);
+    
+  }
+
+  essaBudegaMudou(x,y) {
+    if(x == true){
+      this.arrayRegioes.push(y);
+    }
+    
+    if(x == false){
+      this.arrayRegioes.splice(this.arrayRegioes.indexOf(y),1);
+    }
   }
 
   passwordError:boolean = false;
@@ -51,7 +68,6 @@ export class FormComponent implements OnInit {
     .subscribe(
       (res)=>{
         this.pokemon = res;
-        console.log(res);
       }
     )
   }

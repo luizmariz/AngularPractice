@@ -7,76 +7,76 @@
 		<div class="container">
 			<form #jornada="ngForm" (ngSubmit)="onSubmit(jornada)">
 				<div class=" input-field col s12">
-					<input id="nome" type="text" name="nome">
+					<input id="nome" type="text" name="nome" ngModel required #nome="ngModel">
 					<label for="nome">Nome</label>
 				</div>
 				<div class=" input-field col s12">
-					<input id="idade" type="text" name="idade">
+					<input id="idade" type="text" name="idade" ngModel required #idade="ngModel">
 					<label for="idade">Idade</label>
 				</div>
 				<div class=" input-field col s12">
-					<input id="num_ident" type="text" name="num_ident">
-					<label for="num_ident">Nº de indetificação</label>
+					<input id="numIdent" type="text" name="numIdent" ngModel required #numIdent="ngModel">
+					<label for="numIdent">Nº de indetificação</label>
 				</div>
-				<div class=" col s12 l6">
+				<div class=" col s12 m6">
 					<p>Região de Início da Jornada: </p>
 					<p>
-      					<input type="radio" id="kanto" name="grupo1"/>
+      					<input type="radio" id="kanto" name="grupo1" value="Kanto" ngModel required/>
         				<label for="kanto">Kanto</label>	
 					</p>
 					<p>
-						<input type="radio" id="johto" name="grupo1"/>
+						<input type="radio" id="johto" name="grupo1" value="Johto" ngModel/>
 					  	<label for="johto">Johto</label>	
 				  	</p>
 					<p>
-						<input type="radio" id="hoenn" name="grupo1"/>
+						<input type="radio" id="hoenn" name="grupo1" value="Hoenn" ngModel/>
 				  		<label for="hoenn">Hoenn</label>	
 					</p>
 					<p>
-						<input type="radio" id="sinnoh" name="grupo1"/>
+						<input type="radio" id="sinnoh" name="grupo1" value="Sinnoh" ngModel/>
 					  	<label for="sinnoh">Sinnoh</label>	
 				  	</p>
 				  	<p>
-						<input type="radio" id="unova" name="grupo1"/>
+						<input type="radio" id="unova" name="grupo1" value="Unova" ngModel/>
 				  		<label for="unova">Unova</label>	
 			  		</p>
 			  		<p>
-						<input type="radio" id="kalos" name="grupo1"/>
+						<input type="radio" id="kalos" name="grupo1" value="Kalos" ngModel/>
 			  			<label for="kalos">Kalos</label>	
 		  			</p>
 				</div>
-				<div class="col s12 l6">
+				<div class="col s12 m6">
 					<p>Outras regiões que planeja se aventurar:</p>
 					<p>
-      					<input type="checkbox" id="kanto_chec" name="kanto_chec"/>
+      					<input type="checkbox" class="filled-in" id="kanto_chec" name="grupo2" ngModel required #kantoC="ngModel" (change)="essaBudegaMudou(kantoC.value,'Kanto')"/>
         				<label for="kanto_chec">Kanto</label>	
 					</p>
 					<p>
-						<input type="checkbox" id="johto_chec" name="johto_chec"/>
+						<input type="checkbox" class="filled-in" id="johto_chec" name="grupo2" ngModel required #johtoC="ngModel" (change)="essaBudegaMudou(johtoC.value,'Johto')"/>
 					  	<label for="johto_chec">Johto</label>	
 				  	</p>
 				  	<p>
-						<input type="checkbox" id="hoenn_chec" name="hoenn_chec"/>
+						<input type="checkbox" class="filled-in" id="hoenn_chec" name="grupo2" ngModel required #hoennC="ngModel" (change)="essaBudegaMudou(hoennC.value,'Hoenn')"/>
 				  		<label for="hoenn_chec">Hoenn</label>	
 			 		</p>
 			  		<p>
-						<input type="checkbox" id="sinnoh_chec" name="sinnoh_chec"/>
+						<input type="checkbox" class="filled-in" id="sinnoh_chec" name="grupo2" ngModel required #sinnohC="ngModel" (change)="essaBudegaMudou(sinnohC.value,'Sinnoh')"/>
 			  			<label for="sinnoh_chec">Sinnoh</label>	
 		  			</p>
 		  			<p>
-						<input type="checkbox" id="unova_chec" name="unova_chec"/>
+						<input type="checkbox" class="filled-in" id="unova_chec" name="grupo2" ngModel required #unovaC="ngModel" (change)="essaBudegaMudou(unovaC.value,'Unova')"/>
 		  				<label for="unova_chec">Unova</label>	
 	  				</p>
 	  				<p>
-						<input type="checkbox" id="kalos_chec" name="kalos_chec"/>
+						<input type="checkbox" class="filled-in" id="kalos_chec" name="grupo2" ngModel required #kalosC="ngModel" (change)="essaBudegaMudou(kalosC.value,'Kalos')"/>
 	  					<label for="kalos_chec">Kalos</label>	
   					</p>
   					<p>
-						<input type="checkbox" id="sevii_chec" name="sevii_chec"/>
+						<input type="checkbox" class="filled-in" id="sevii_chec" name="grupo2" ngModel required #seviiC="ngModel" (change)="essaBudegaMudou(seviiC.value,'Ilhas Sevii')"/>
   						<label for="sevii_chec">Sevii Islands</label>	
 					</p>
 					<p>
-						<input type="checkbox" id="laranjas_chec" name="laranjas_chec"/>
+						<input type="checkbox" class="filled-in" id="laranjas_chec" name="grupo2" ngModel required #laranjasC="ngModel" (change)="essaBudegaMudou(laranjasC.value,'Ilhas Laranja')"/>
   						<label for="laranjas_chec">Ilhas Laranja</label>	
 					</p>
 				</div>
