@@ -2,26 +2,44 @@
 
 <div materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions" class="modal modal-fixed-footer">
 	<div class="modal-content">
+
 		<img src="/assets/Jacob.gif_c200">
 		<h5> Bem vindo, ao mundo pokemom!</h5>
+
 		<div class="container">
 			<form #jornada="ngForm" (ngSubmit)="onSubmit(jornada)">
+
 				<div class=" input-field col s12">
 					<input id="nome" type="text" name="nome" ngModel required #nome="ngModel">
 					<label for="nome">Nome</label>
 				</div>
+
 				<div class=" input-field col s12">
-					<input id="idade" type="text" name="idade" ngModel required #idade="ngModel">
+
+					<input id="idade" type="number" name="idade" ngModel required #idade="ngModel"  (change)="checkAge(idade)" (keyup)="checkAge(idade)" autocomplete="off">
 					<label for="idade">Idade</label>
+
+					<div *ngIf="ageError && idade.valid">
+						<p class="aviso">*{{idade.value}} ano(s)? você é muito jovem para uma jornada pokemon.</p><br>
+					</div>
+
 				</div>
+
 				<div class=" input-field col s12">
-					<input id="numIdent" type="text" name="numIdent" ngModel required #numIdent="ngModel">
-					<label for="numIdent">Nº de indetificação</label>
+
+					<input id="numIdent" type="text" name="numIdent" pattern="[0-9]*"  ngModel required #numIdent="ngModel" (blur)="checkNumIdent(numIdent)" autocomplete="off">
+					<label for="numIdent">Nº de indetificação (8 dígitos)</label>
+
+					<div *ngIf="numIdentError || numIdent.errors?.pattern">
+						<p class="aviso">*Esse campo deve conter exatos 8 dígitos numéricos.</p><br>
+					</div>
+
 				</div>
+
 				<div class=" col s12 m6">
 					<p>Região de Início da Jornada: </p>
 					<p>
-      					<input type="radio" id="kanto" name="grupo1" value="Kanto" ngModel required (change)="disableCheckbox(0)"/>
+      					<input type="radio" id="kanto" name="grupo1" value="Kanto" ngModel required #radioBtn="ngModel" (change)="disableCheckbox(0)"/>
         				<label for="kanto">Kanto</label>	
 					</p>
 					<p>
@@ -45,89 +63,77 @@
 			  			<label for="kalos">Kalos</label>	
 		  			</p>
 				</div>
+
 				<div class="col s12 m6">
 					<p>Outras regiões que planeja se aventurar:</p>
 					<p>
-      					<input type="checkbox" [disabled]="checkbox[0]" class="filled-in" id="kanto_chec" name="grupo2a" ngModel required #kantoC="ngModel" (change)="essaBudegaMudou(kantoC.value,'Kanto')"/>
+      					<input type="checkbox" [disabled]="checkbox[0]" class="filled-in" id="kanto_chec" name="kanto_chec" ngModel required #kantoC="ngModel" (change)="getRegiao(kantoC.value,'Kanto')"/>
         				<label for="kanto_chec">Kanto</label>	
 					</p>
 					<p>
-						<input type="checkbox" [disabled]="checkbox[1]" class="filled-in" id="johto_chec" name="grupo2b" ngModel required #johtoC="ngModel" (change)="essaBudegaMudou(johtoC.value,'Johto')"/>
+						<input type="checkbox" [disabled]="checkbox[1]" class="filled-in" id="johto_chec" name="johto_chec" ngModel required #johtoC="ngModel" (change)="getRegiao(johtoC.value,'Johto')"/>
 					  	<label for="johto_chec">Johto</label>	
 				  	</p>
 				  	<p>
-						<input type="checkbox" [disabled]="checkbox[2]" class="filled-in" id="hoenn_chec" name="grupo2c" ngModel required #hoennC="ngModel" (change)="essaBudegaMudou(hoennC.value,'Hoenn')"/>
+						<input type="checkbox" [disabled]="checkbox[2]" class="filled-in" id="hoenn_chec" name="hoenn_chec" ngModel required #hoennC="ngModel" (change)="getRegiao(hoennC.value,'Hoenn')"/>
 				  		<label for="hoenn_chec">Hoenn</label>	
 			 		</p>
 			  		<p>
-						<input type="checkbox" [disabled]="checkbox[3]" class="filled-in" id="sinnoh_chec" name="grupo2d" ngModel required #sinnohC="ngModel" (change)="essaBudegaMudou(sinnohC.value,'Sinnoh')"/>
+						<input type="checkbox" [disabled]="checkbox[3]" class="filled-in" id="sinnoh_chec" name="sinnoh_chec" ngModel required #sinnohC="ngModel" (change)="getRegiao(sinnohC.value,'Sinnoh')"/>
 			  			<label for="sinnoh_chec">Sinnoh</label>	
 		  			</p>
 		  			<p>
-						<input type="checkbox" [disabled]="checkbox[4]" class="filled-in" id="unova_chec" name="grupo2e" ngModel required #unovaC="ngModel" (change)="essaBudegaMudou(unovaC.value,'Unova')"/>
+						<input type="checkbox" [disabled]="checkbox[4]" class="filled-in" id="unova_chec" name="unova_chec" ngModel required #unovaC="ngModel" (change)="getRegiao(unovaC.value,'Unova')"/>
 		  				<label for="unova_chec">Unova</label>	
 	  				</p>
 	  				<p>
-						<input type="checkbox" [disabled]="checkbox[5]" class="filled-in" id="kalos_chec" name="grupo2f" ngModel required #kalosC="ngModel" (change)="essaBudegaMudou(kalosC.value,'Kalos')"/>
+						<input type="checkbox" [disabled]="checkbox[5]" class="filled-in" id="kalos_chec" name="kalos_chec" ngModel required #kalosC="ngModel" (change)="getRegiao(kalosC.value,'Kalos')"/>
 	  					<label for="kalos_chec">Kalos</label>	
   					</p>
   					<p>
-						<input type="checkbox" [disabled]="checkbox[6]" class="filled-in" id="sevii_chec" name="grupo2g" ngModel required #seviiC="ngModel" (change)="essaBudegaMudou(seviiC.value,'Ilhas Sevii')"/>
-  						<label for="sevii_chec">Sevii Islands</label>	
+						<input type="checkbox" [disabled]="checkbox[6]" class="filled-in" id="sevii_chec" name="sevii_chec" ngModel required #seviiC="ngModel" (change)="getRegiao(seviiC.value,'Ilhas Sevii')"/>
+  						<label for="sevii_chec">Ilhas Sevii</label>	
 					</p>
 					<p>
-						<input type="checkbox" [disabled]="checkbox[7]" class="filled-in" id="laranjas_chec" name="grupo2h" ngModel required #laranjasC="ngModel" (change)="essaBudegaMudou(laranjasC.value,'Ilhas Laranja')"/>
+						<input type="checkbox" [disabled]="checkbox[7]" class="filled-in" id="laranjas_chec" name="laranjas_chec" ngModel required #laranjasC="ngModel" (change)="getRegiao(laranjasC.value,'Ilhas Laranja')"/>
   						<label for="laranjas_chec">Ilhas Laranja</label>	
 					</p>
 				</div>
+
 				<div class="input-field col s12">
+
 					<div *ngIf="pokemon" class="col s6">
 						<img class="activator" src="{{pokemon.sprites.front_default}}">
 					</div>
+
 					<div *ngIf="pokemon" class="col s6">
 						<p class="rigth">
 							#{{pokemon.id}}
 							<br>XP base: {{pokemon.base_experience}}
 						</p>
 					</div>		
+
 					<input id="poke" type="text" name="poke" ngModel required #poke="ngModel" (blur)="getPokemon(poke)">
 					<label for="poke">Pokémon inicial</label>
+
+					<div *ngIf="pokemonError">
+							<p class="aviso">*Escolha um pokemon que existe, você pode checar nossa pokedex.</p><br>
+					</div>
+
+				</div> 
+
+				<div *ngIf="(nome.invalid && nome.touched)|| (idade.invalid && idade.touched) || (numIdent.invalid && numIdent.touched) || (radioBtn.invalid && radioBtn.untouched) || (poke.invalid && poke.untouched && poke.pristine)">
+					<p class="aviso">*Campo(s) obrigatórios.</p>
 				</div>
-				<button class="waves-effect waves-light btn" type="submit">COMEÇAR!</button>
+
+				<button class="waves-effect waves-light btn" type="submit" [disabled]="nome.invalid || idade.invalid || numIdent.invalid || radioBtn.invalid || poke.invalid || ageError || numIdentError || pokemonError || numIdent.errors?.pattern">COMEÇAR!</button>
+
 			</form>
 		</div>
 	</div>
+
 	<div class="modal-footer">
       <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="fechaModal()">Fechar</a>
-    </div>
+	</div>
+	
 </div>
-
-
-<!-- 
-
-	<form #login="ngForm" (ngSubmit)="onSubmit(login)" class="col l12 card-panel">
-		<div>
-			<div class="input-field col l6">
-				<input id="usuario" type="text" name="usuario" ngModel required #usuario="ngModel">
-				<label for="usuario">Usuário</label>
-			</div>
-			<div class="input-field col l6">
-				<input id="senha" type="password" name="senha" ngModel required #senha="ngModel" (keyup)="checkPassword(senha)">
-				<label for="senha">Senha</label>
-			</div>
-		</div>
-
-		<div *ngIf="(usuario.invalid && usuario.touched)|| (senha.invalid && senha.touched) || (login.submitted && login.untouched && senha.untouched)">
-					<p>*Campo(s) obrigatórios.</p>
-		</div>
-
-		<div *ngIf="passwordError">
-			<p>*Senha inválida.</p>
-		</div>
-
-		<div class="row">
-			<button class="waves-effect waves-light btn" type="submit" [disabled]="login.invalid || passwordError">LOGIN</button>
-		</div>
-	</form>
-
--->
