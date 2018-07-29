@@ -2,8 +2,7 @@
     background-color: #1565c0;
 }
 
-.input-field input[type=text]:focus {
-    border-bottom: 1px solid #1565c0;
-    box-shadow: 0 1px 0 0 #1565c0;
+.aviso {
+    color:red;
 }
 
