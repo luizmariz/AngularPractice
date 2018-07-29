@@ -16,7 +16,16 @@ export class FormComponent implements OnInit {
   }
 
   inputDisabled: boolean = true;
-  arrayRegioes = [];
+
+  checkbox = [false,false,false,false,false,false,false,false];
+  i;
+  disableCheckbox(posicao) {
+    for(this.i=0;this.i<this.checkbox.length;this.i++) {
+      this.checkbox[this.i] = false;
+    }
+
+    this.checkbox[posicao] = true;
+  }
 
   onSubmit(jornada) {
     console.log(jornada.value.nome);
@@ -28,6 +37,7 @@ export class FormComponent implements OnInit {
     
   }
 
+  arrayRegioes = [];
   essaBudegaMudou(x,y) {
     if(x == true){
       this.arrayRegioes.push(y);
