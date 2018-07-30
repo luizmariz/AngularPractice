@@ -6,27 +6,30 @@
 			</div>
 			<br><br><br>
 			<div class="row">
-				<div class="white">
+				<div class="white card-panel z-depth-5">
+					<h4>Treinadores Cadastrados</h4>
+					<div class="divider"></div>
+					<div class="container tabela center">
+						<table class="bordered highlight">
+        					<thead>
+          						<tr>
+              						<th>Nome</th>
+              						<th>Pokémon</th>
+              						<th>Código</th>
+									<th></th>
+          						</tr>
+        					</thead>
 
-					<table class="bordered highlight responsive-table">
-        				<thead>
-          					<tr>
-              					<th>Nome</th>
-              					<th>Pokémon</th>
-              					<th>Código</th>
-                        <th><th>
-          					</tr>
-        				</thead>
-
-        				<tbody *ngFor="let treinador of arrayTrainer; let i = index">
-          					<tr>
-            					<td>{{treinador.nome}}</td>
-            					<td>{{treinador.pokemon}}</td>
-            					<td>{{treinador.codigo}}</td>
-                      <td><a class="waves-effect was-light btn blue darken-3" (click)="deleteTreinador(i)">Apagar</a></td>
-          					</tr>
-        				</tbody>
-      				</table>
+        					<tbody *ngFor="let treinador of arrayTrainer; let i = index">
+          						<tr>
+            						<td>{{treinador.nome}}</td>
+            						<td>{{treinador.pokemon}}</td>
+            						<td>{{treinador.codigo}}</td>
+                      				<td><a class="btn-floating btn-small waves-effect waves-light blue darken-3 z-depth-3" (click)="deleteTreinador(i)"><i class="material-icons">delete</i></a></td>
+          						</tr>
+							</tbody>	
+      					</table>
+					</div>
 				</div>
 			</div>
 		</div>		 
