@@ -1,3 +1,22 @@
 img {
 	margin-top: 10%;
 }
+
+thead {
+	font-size: 120%;
+}
+
+.card-panel {
+	padding-bottom: 5%;
+}
+
+.divider {
+	margin-left:12%;
+	margin-right:12%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+h4 {
+	color:#757575;
+}
