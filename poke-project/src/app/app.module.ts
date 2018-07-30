@@ -15,6 +15,8 @@ import { PokemonService } from './services/pokemon.service';
 import { TrainerComponent } from './pages/trainer/trainer.component';
 import { FormComponent } from './pages/trainer/form/form.component';
 
+import { TrainerService } from './services/trainer/trainer.service';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,10 @@ import { FormComponent } from './pages/trainer/form/form.component';
     FormsModule
 
   ],
-  providers: [PokemonService],
+  providers: [
+    PokemonService,
+    TrainerService
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
