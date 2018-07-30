@@ -23,5 +23,12 @@ export class TrainerService {
 		}).map(res => res);	
 	}
 
-	
+	getUser(): Observable<any> {
+		return this.http.get(this.trainerUrl).map(res=>res);
+	}
+
+	deleteUser(id: number): Observable<any> {
+		return this.http.delete(this.trainerUrl + id).map(res=>res);
+	}
+
 }

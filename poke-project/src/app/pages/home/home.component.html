@@ -4,6 +4,31 @@
 			<div>
 				<img src="/assets/pokemon-logo.png" class="responsive-img">
 			</div>
+			<br><br><br>
+			<div class="row">
+				<div class="white">
+
+					<table class="bordered highlight responsive-table">
+        				<thead>
+          					<tr>
+              					<th>Nome</th>
+              					<th>Pokémon</th>
+              					<th>Código</th>
+                        <th><th>
+          					</tr>
+        				</thead>
+
+        				<tbody *ngFor="let treinador of arrayTrainer; let i = index">
+          					<tr>
+            					<td>{{treinador.nome}}</td>
+            					<td>{{treinador.pokemon}}</td>
+            					<td>{{treinador.codigo}}</td>
+                      <td><a class="waves-effect was-light btn blue darken-3" (click)="deleteTreinador(i)">Apagar</a></td>
+          					</tr>
+        				</tbody>
+      				</table>
+				</div>
+			</div>
 		</div>		 
 	</div>
 </div>
