@@ -20,7 +20,8 @@ export class TrainerService {
 			'nome': nome,
 			'codigo': codigo,
 			'pokemon': pokemon
-		}).map(res => res);
-		
+		}).map(res => res);	
 	}
+
+	
 }
