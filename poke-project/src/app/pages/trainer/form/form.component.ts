@@ -112,7 +112,15 @@ export class FormComponent implements OnInit {
     console.log(this.arrayRegioes);
     console.log(jornada.value.poke);
 
-    this.trainerService.registerUser(jornada.value.nome, jornada.value.numIdent, jornada.value.poke);
-    
+    this.trainerService.registerUser(jornada.value.nome, jornada.value.numIdent, jornada.value.poke)
+    .subscribe(
+      (res)=>{
+        console.log(res);
+      },
+
+      (error) =>{
+        console.log(error);
+      }
+    )
   }
 }
