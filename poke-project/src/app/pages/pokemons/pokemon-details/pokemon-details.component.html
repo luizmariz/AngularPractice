@@ -1,0 +1,17 @@
+<div class="row conteudo">
+	<div class="container center">
+		<div class="col s12 l4 offset-l4" *ngIf="pokemon">
+			<div class="card z-depht-5">
+				<div class="card-content">
+					<img [src]="pokemon.sprites.front_default">
+					<p class="card-title grey-text text-darken-4">{{pokemon.name}}</p>
+					<p class=" left card-title grey-text text-darken-4">#{{pokemon.id}}</p><br><br>
+					<p class="left">Tipo(s): <span *ngFor="let type of pokemon.types">{{type.type.name}} </span></p><br>
+					<p class="left">Peso: {{pokemon.weight / 10}} kg</p><br>
+					<p class="left">Altura: {{pokemon.height / 10}} m</p><br>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

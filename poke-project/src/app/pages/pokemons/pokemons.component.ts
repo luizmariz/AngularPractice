@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemons',
@@ -12,7 +12,7 @@ export class PokemonsComponent implements OnInit {
 
   pokemons = [];
   id: number;
-  constructor(public pkmnService: PokemonService) {
+  constructor(public pkmnService: PokemonService public router: Router) {
       this.id = 0;
    }
 
@@ -29,5 +29,9 @@ export class PokemonsComponent implements OnInit {
           console.log(res);
         }
     )
+  }
+
+  redirect(pokemon) {
+    this.router.navigate(['/pokemons', pokemon.id]);
   }
 }

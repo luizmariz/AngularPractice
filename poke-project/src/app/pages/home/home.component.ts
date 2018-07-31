@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from '../../services/trainer/trainer.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -8,13 +10,16 @@ import { TrainerService } from '../../services/trainer/trainer.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public trainerService: TrainerService) { }
+  constructor(public trainerService: TrainerService,public route: ActivatedRoute, public router: Router) { }
+
 
   arrayTrainer = [];
   
   ngOnInit() {
 
-  	this.trainerService.getUser()
+    console.log(this.route.snapshot.queryParams['page']);
+  	
+    this.trainerService.getUser()
     .subscribe(
       (res)=>{
         
@@ -44,5 +49,12 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  nextPage() {
+    let pagina = this.route.snapshot.queryParams['page'];
+    pagina++;
+    this.router.navigate(['/home'],
+      {queryParams: {'page': pagina}});
   }
 }
